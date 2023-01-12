@@ -1,0 +1,12 @@
+#required port
+server.port: 5000
+
+#external api config
+proxy:
+  name: SimilarProductsClient
+  url: http://localhost:3001
+
+#swagger config
+springdoc:
+  api-docs:
+    path: /api-docs
