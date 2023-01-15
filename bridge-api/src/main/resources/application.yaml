@@ -6,10 +6,6 @@ proxy:
   name: SimilarProductProxy
   url: http://localhost:3001
 
-#api config
-api-config:
-  version: "/api/v1"
-
 #swagger config
 springdoc:
   api-docs:
