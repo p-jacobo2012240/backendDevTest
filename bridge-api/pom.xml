@@ -16,6 +16,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
+		<openapi-generator-maven-plugin.version>4.3.1</openapi-generator-maven-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -37,7 +38,6 @@
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -52,6 +52,11 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 			<version>3.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>openapi-generator</artifactId>
+			<version>3.3.4</version>
 		</dependency>
 	</dependencies>
 
@@ -88,34 +93,33 @@
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
-				<version>3.3.4</version>
+				<version>${openapi-generator-maven-plugin.version}</version>
 				<executions>
 					<execution>
-						<id>contract-service</id>
 						<goals>
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${basedir}/src/main/resources/swagger/similarProducts.yaml</inputSpec>
-							<artifactId>contract-service</artifactId>
-							<output>${basedir}/target/generated-sources</output>
-							<language>spring</language>
-							<modelPackage>ru.payhub.rest.v1.model</modelPackage>
-							<apiPackage>ru.payhub.rest.v1.api</apiPackage>
-							<!-- <invokerPackage>ru.payhub.rest.v1.handler</invokerPackage> -->
-							<generateSupportingFiles>false</generateSupportingFiles>
+							<inputSpec>
+								/src/main/resources/swagger/similarProducts.yaml
+							</inputSpec>
+							<generatorName>spring</generatorName>
+							<apiPackage>com.test.bridgeapi.infrastructure.openapi.api</apiPackage>
+							<modelPackage>com.test.bridgeapi.infrastructure.openapi.model</modelPackage>
+							<supportingFilesToGenerate>
+								ApiUtil.java
+							</supportingFilesToGenerate>
 							<configOptions>
-								<sourceFolder>src/main/java</sourceFolder>
-								<interfaceOnly>true</interfaceOnly>
-								<library>spring-boot</library>
-								<configPackage>ru.payhub.config</configPackage>
-								<singleContentTypes>true</singleContentTypes>
+								<delegatePattern>false</delegatePattern>
+								<dateLibrary>java8-localdatetime</dateLibrary>
 							</configOptions>
+							<templateDirectory>
+								src/main/resources/swagger/similarProducts.yaml
+							</templateDirectory>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
-
 			<!-- swagger -->
 		</plugins>
 	</build>
