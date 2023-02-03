@@ -90,36 +90,6 @@
 				</configuration>
 			</plugin>
 			<!-- swagger -->
-			<plugin>
-				<groupId>org.openapitools</groupId>
-				<artifactId>openapi-generator-maven-plugin</artifactId>
-				<version>${openapi-generator-maven-plugin.version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<inputSpec>
-								/src/main/resources/swagger/similarProducts.yaml
-							</inputSpec>
-							<generatorName>spring</generatorName>
-							<apiPackage>com.test.bridgeapi.infrastructure.openapi.api</apiPackage>
-							<modelPackage>com.test.bridgeapi.infrastructure.openapi.model</modelPackage>
-							<supportingFilesToGenerate>
-								ApiUtil.java
-							</supportingFilesToGenerate>
-							<configOptions>
-								<delegatePattern>false</delegatePattern>
-								<dateLibrary>java8-localdatetime</dateLibrary>
-							</configOptions>
-							<templateDirectory>
-								src/main/resources/swagger/similarProducts.yaml
-							</templateDirectory>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 			<!-- swagger -->
 		</plugins>
 	</build>
